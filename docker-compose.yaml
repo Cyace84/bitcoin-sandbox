@@ -14,12 +14,19 @@ services:
       - "18443:18443"
     volumes:
       - ./bitcoin-data:/bitcoin
+    networks:
+      - dobrobot_network
 
   bitcoin-mining:
     build: .
     depends_on:
       - bitcoin-node
-    ports:
-      - "31443:31443"
+
     volumes:
       - ./mining/data:/data
+    networks:
+      - dobrobot_network
+
+networks:
+  dobrobot_network:
+    driver: bridge
