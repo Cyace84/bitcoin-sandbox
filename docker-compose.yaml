@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  bitcoin-node:
+    container_name: bitcoin-node
+    image: ruimarinho/bitcoin-core:latest
+    command:
+      - -regtest=1
+      - -rpcuser=testbitcoinrpc
+      - -rpcpassword=testBitcoinRpc
+      - -rpcallowip=0.0.0.0/0
+      - -rpcbind=0.0.0.0
+      - -fallbackfee=0.00001
+    ports:
+      - "18443:18443"
+    volumes:
+      - ./bitcoin-data:/bitcoin
+
+  bitcoin-mining:
+    build: .
+    depends_on:
+      - bitcoin-node
+    ports:
+      - "31443:31443"
+    volumes:
+      - ./mining/data:/data
