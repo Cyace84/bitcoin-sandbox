@@ -33,6 +33,13 @@ async function main() {
     if (!address || address.length === 0) {
       console.log(21312312, "Creating new wallet and address...");
       await client.createwallet({
+        wallet_name: "miner",
+        passphrase: "miner",
+        avoid_reuse: false,
+        disable_private_keys: false,
+        blank: false,
+      });
+      await client.createwallet({
         wallet_name: "faucet",
         passphrase: "faucet",
         avoid_reuse: false,
@@ -75,9 +82,9 @@ async function main() {
         address
       );
       console.log(`Generated block: ${block} at ${new Date()}`);
-      await sleep(1000);
+      await sleep(5000);
     } catch (e) {
-      await sleep(1000);
+      await sleep(5000);
       console.log(e);
     }
   }
