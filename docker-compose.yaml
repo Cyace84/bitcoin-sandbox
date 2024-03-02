@@ -15,7 +15,7 @@ services:
     volumes:
       - ./bitcoin-data:/bitcoin
     networks:
-      - dobrobot_network
+      - dobrobot
 
   bitcoin-mining:
     build: .
@@ -25,8 +25,9 @@ services:
     volumes:
       - ./mining/data:/data
     networks:
-      - dobrobot_network
+      - dobrobot
 
 networks:
-  dobrobot_network:
+  dobrobot:
+    name: dobrobot
     driver: bridge
