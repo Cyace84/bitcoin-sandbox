@@ -15,7 +15,8 @@ services:
     volumes:
       - ./bitcoin-data:/bitcoin
     networks:
-      - dobrobot
+      dobrobot:
+        ipv4_address: "172.18.43.43"
 
   bitcoin-mining:
     build: .
@@ -29,5 +30,5 @@ services:
 
 networks:
   dobrobot:
+    external: true
     name: dobrobot
-    driver: bridge
